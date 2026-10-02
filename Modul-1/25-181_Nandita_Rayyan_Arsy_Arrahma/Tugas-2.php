@@ -6,6 +6,6 @@
 		<title>Tugas 2</title>
 	</head>
 	<body>
-		<?php echo "Hallo World";
+		<?php echo "Hallo World";?>
 	</body>
 </html>
