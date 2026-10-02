@@ -1,1 +1,2 @@
-# Modul 1
+index.php
+<?php echo "Hello world" ?> 

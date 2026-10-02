@@ -1,6 +1,1 @@
-<?php
-function setheight($minheight = 50) {
-    echo "The height is : $minheight<br>";
-}
-setheight();
-?>
+soal no 16.php
