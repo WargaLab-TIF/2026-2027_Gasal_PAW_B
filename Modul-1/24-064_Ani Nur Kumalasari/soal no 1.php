@@ -1,4 +1,4 @@
-<? php
+<?php
 echo "<html>";
 echo "<body>";
 echo "Hello world";

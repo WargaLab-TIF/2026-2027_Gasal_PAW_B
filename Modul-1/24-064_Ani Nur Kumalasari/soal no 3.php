@@ -1,9 +1,9 @@
-<!-- non embedded script -->
+<!-- non-embedded script -->
 <?php
-	echo "<html>";
-	echo "<body>
-		echo Hello world";
-	echo </body>"
+echo "<html>";
+echo "<body>";
+echo "Hello world";
+echo "</body>";
 echo "</html>";
 ?>
 
