@@ -2,7 +2,7 @@
 <html>
 <body>
     <?php
-    // ini embedded script
+// ini embedded script
     echo "Hello World"; 
     ?>
 </body>

@@ -1,2 +1,2 @@
 <?php
-echo str_replace("world", "Dolly", "Hello world!");
+echo str_replace("world", "nice", "Hello world!");

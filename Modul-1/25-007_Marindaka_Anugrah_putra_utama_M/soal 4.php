@@ -1,5 +1,5 @@
 <?php
 $color = "silver";
-$COLOR = "white";
+$coloR = "white";
 echo "My car is " . $color . "<br>";
-echo "My house is " . $COLOR;
+echo "My house is " . $coloR;
