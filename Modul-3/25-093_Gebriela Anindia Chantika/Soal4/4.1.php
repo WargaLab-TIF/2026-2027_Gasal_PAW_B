@@ -7,9 +7,16 @@ $height["Frank"] = "168";
 $height["George"] = "175";
 $height["Harry"] = "182";
 
-echo "height = ";
-print_r($height);
-echo "<br><br>";
+echo 'height = (';
+$i = 0;
+foreach ($height as $k => $v) {
+    echo '"' . $k . '"=>"' . $v . '"';
+    if ($i < count($height) - 1) {
+        echo ', ';
+    }
+    $i++;
+}
+echo ')<br><br>';
 
 foreach ($height as $name => $val) {
     echo "$name is $val cm tall.<br>";
