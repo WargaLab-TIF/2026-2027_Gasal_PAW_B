@@ -1,4 +1,4 @@
-	<?php
+<?php
 $height = array(
     "Andy" => "176",
     "Barry" => "165",
