@@ -6,6 +6,6 @@ do{
 	$angka++;
 	$angka++;
 	$angka++;
-//21 biar tampil
+//21 biar gokil
 }while($angka<21)
 ?>
