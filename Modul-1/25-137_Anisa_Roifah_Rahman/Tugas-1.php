@@ -1,0 +1,1 @@
+<?php echo "Hello Word"; ?> // ini non-embeded script
