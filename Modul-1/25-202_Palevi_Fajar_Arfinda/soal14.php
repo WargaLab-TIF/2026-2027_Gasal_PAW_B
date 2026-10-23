@@ -1,0 +1,11 @@
+<?php
+	function familyName($fname){
+		echo $fname . "<Br>";
+	}
+
+	familyName("Jani");
+	familyName("Hege");
+	familyName("Stale");
+	familyName("Kai jim");
+	familyName("Borge");
+?>
