@@ -30,4 +30,10 @@ else
 {
     include 'form.inc';
 }
+
+// Pengamatan langkah 6:
+// Pada self-submission, form dikirim ke file PHP yang sama. Jika validasi gagal, pesan error ditampilkan dan form ditampilkan kembali.
+
+// Pengamatan langkah 8:
+// Setelah form.inc diubah, data yang sebelumnya diisi tetap muncul. ketika validasi gagal. Pada langkah 6, form ditampilkan kembali tanpa mempertahankan seluruh isian sebelumnya.
  ?>
