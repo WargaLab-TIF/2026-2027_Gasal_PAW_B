@@ -1,7 +1,7 @@
 <?php
 $errors = array();
 
-if (isset($_POST['surname'])) {
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     require 'validate.inc';
 
     validateName($errors, $_POST, 'surname');
@@ -11,15 +11,13 @@ if (isset($_POST['surname'])) {
         echo '<h2>Invalid, correct the following errors:</h2>';
 
         foreach ($errors as $field => $error) {
-            echo "$field $error<br>";
+            echo htmlspecialchars($field) . ' ' .
+                 htmlspecialchars($error) . '<br>';
         }
-
-        include 'form.inc';
     } else {
         echo 'Form submitted successfully with no errors';
-        include 'form.inc';
     }
-} else {
-    include 'form.inc';
 }
+
+include 'form.inc';
 ?>
