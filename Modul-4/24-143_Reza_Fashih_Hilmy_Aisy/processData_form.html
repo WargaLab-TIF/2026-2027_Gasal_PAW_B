@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title></title>
+</head>
+<body>
+	<h1>Register</h1>
+	<fieldset>
+		<legend>Person Details</legend>
+		<form name="myForm" action="processData.php" method="POST">
+			<div class="field">
+				<label for="surname">Surname</label>
+				<input type="text" name="surname" size="31"/>
+			</div>
+			<div class="field">
+				<label for="email">Email address</label>
+				<input type="text" name="email" size="31"/>
+			</div>
+			<div class="field">
+				<label for="password">Password</label>
+				<input type="password" name="password" size="31"/>
+			</div>
+			<div class="field">
+				<label for="address">Street Address</label>
+				<textarea name="address" rows="3" cols="22"/></textarea>
+			</div>
+			<div class="field">
+				<label name ="state">State</label>
+				<select for>
+					<option value="-1" selected> [choose your stated] </option>
+					<option value="1">Australian Capital Territory</option>
+					<option value="2">Queensland</option>
+					<option value="3">Victoria</option>
+					<option value="4">New south Wales</option>
+					<option value="5">Tasmania</option>
+					<option value="6">South Australia</option>
+					<option value="7">Werstern Australia</option>
+					<option value="8">Nothern Territory</option>
+				</select>
+			</div>
+			<div class="field">
+				<input type="hidden" name="country" value="Australia">
+			</div>
+			<div class="field">
+				<label for="sex">Gender</label>
+				<input type="radio" name="sex" value="male">Male
+				<input type="radio" name="sex" value="female">Female
+			</div>
+			<div class="field">
+				<label for="vegetarian">Vegetarian</label>
+				<input type="checkbox" name="vegetarian">
+			</div>
+			<div class="field">
+				<label>&nbsp;</label>
+				<input type="submit" value="Submit" name="submit" /><input type="reset" name="Reset" name="reset" />
+			</div>
+
+		</form>
+	</fieldset>
+</body>
+</html>
