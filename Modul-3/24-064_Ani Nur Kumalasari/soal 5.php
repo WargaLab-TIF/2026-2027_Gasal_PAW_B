@@ -14,7 +14,6 @@ foreach ($students as $nama => $data) {
 
 echo ")<br><br>";
 
-// Menambahkan lima data mahasiswa
 $students["Daniel"] = array("220404", "0812345611");
 $students["Elena"] = array("220405", "0812345622");
 $students["Fiona"] = array("220406", "0812345633");
@@ -30,7 +29,6 @@ foreach ($students as $nama => $data) {
 
 echo ")<br><br>";
 
-// Menampilkan tabel mahasiswa
 echo "<table border='1' cellspacing='0' cellpadding='3'>";
 echo "<tr><th>Name</th><th>NIM</th><th>Mobile</th></tr>";
 
