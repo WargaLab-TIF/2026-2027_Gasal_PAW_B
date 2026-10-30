@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Form Data Pribadi</title>
+</head>
+<body>
+
+<h2>Register</h2>
+
+<form action="processData.php" method="POST">
+
+    <div class="field">
+        <label for="surname">Surname</label><br>
+        <input type="text" name="surname" id="surname">
+    </div>
+    <br>
+
+    <div class="field">
+        <label for="email">Email address</label><br>
+        <input type="email" name="email" id="email">
+    </div>
+    <br>
+
+    <div class="field">
+        <label for="password">Password</label><br>
+        <input type="password" name="password" id="password">
+    </div>
+    <br>
+
+    <div class="field">
+        <label for="address">Street Address</label><br>
+        <textarea name="address" id="address"></textarea>
+    </div>
+    <br>
+
+    <div class="field">
+        <label for="state">State</label><br>
+        <select name="state" id="state">
+            <option value="-1" selected>[choose your state]</option>
+            <option value="1">Australian Capital Territory</option>
+            <option value="2">Queensland</option>
+            <option value="3">Victoria</option>
+            <option value="4">New South Wales</option>
+            <option value="5">Tasmania</option>
+            <option value="6">South Australia</option>
+            <option value="7">Western Australia</option>
+            <option value="8">Northern Territory</option>
+        </select>
+    </div>
+    <br>
+
+    <input type="hidden" name="country" value="Australia">
+
+    <div class="field">
+        <label>Gender</label><br>
+        <input type="radio" name="gender" value="Male"> Male
+        <input type="radio" name="gender" value="Female"> Female
+    </div>
+    <br>
+
+    <div class="field">
+        <input type="checkbox" name="vegetarian" value="Yes">
+        Vegetarian?
+    </div>
+    <br>
+
+    <input type="submit" value="Submit">
+    <input type="reset" value="Reset">
+
+</form>
+
+</body>
+</html>
