@@ -18,7 +18,6 @@ mysqli_query($conn, "CREATE TABLE IF NOT EXISTS supplier (
   alamat VARCHAR(255) NOT NULL
 )");
 
-// 3 data awal hanya diisi sekali, saat tabel baru dibuat
 if ($baru) {
   mysqli_query($conn, "INSERT INTO supplier (nama, telp, alamat) VALUES
     ('PT. Maju Bersama', '08123456', 'Surabaya'),
