@@ -1,4 +1,3 @@
-
 <?php
 $errors = array();
 if (isset($_POST['surname'])) {
