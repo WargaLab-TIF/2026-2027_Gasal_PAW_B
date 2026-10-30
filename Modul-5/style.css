@@ -1,0 +1,101 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: white;
+    margin: 0;
+    padding: 30px;
+    color: #555;
+}
+
+.container {
+    width: 85%;
+    margin: auto;
+}
+
+h2 {
+    color: #4682a0;
+    font-size: 28px;
+    font-weight: normal;
+}
+
+hr {
+    border: 0;
+    border-top: 1px solid #eeeeee;
+    margin-bottom: 25px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+th, td {
+    border: 1px solid #dddddd;
+    padding: 12px;
+    text-align: left;
+    font-size: 14px;
+}
+
+th {
+    background-color: #d9edf7;
+}
+
+.btn {
+    display: inline-block;
+    padding: 9px 13px;
+    color: white;
+    text-decoration: none;
+    border: none;
+    border-radius: 4px;
+    font-size: 13px;
+    cursor: pointer;
+}
+
+.tambah, .simpan {
+    background-color: #5cb85c;
+}
+
+.edit {
+    background-color: #f07800;
+}
+
+.hapus {
+    background-color: #c9302c;
+}
+
+.tambah {
+    float: right;
+    margin-bottom: 10px;
+}
+
+form {
+    width: 550px;
+    max-width: 100%;
+    margin: 30px auto;
+}
+
+.form-group {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    width: 100px;
+    text-align: right;
+    margin-right: 20px;
+    font-weight: bold;
+    font-size: 14px;
+}
+
+.form-group input {
+    width: 300px;
+    max-width: 100%;
+    padding: 10px;
+    border: 1px solid #cccccc;
+    border-radius: 4px;
+}
+
+.form-button {
+    margin-left: 120px;
+}
