@@ -145,19 +145,19 @@ $koneksi = bukaKoneksi();
         <!-- Nama ptnya -->
         <div class="form-row">
             <label>Nama</label>
-            <input type="text" name="nama" required>
+            <input type="text" name="nama" required placeholder="Nama">
         </div>
 
         <!-- Telp -->
         <div class="form-row">
             <label>Telp</label>
-            <input type="text" name="telp" required>
+            <input type="text" name="telp" required placeholder="Telp">
         </div>
 
         <!-- Alamat -->
         <div class="form-row">
             <label>Alamat</label>
-            <input type="text" name="alamat" required>
+            <input type="text" name="alamat" required placeholder="Alamat">
         </div>
 
         <!--Tombol Aksi-->
