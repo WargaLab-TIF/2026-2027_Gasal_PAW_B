@@ -5,7 +5,7 @@
     <div class="field">
         <label for="surname">Surname</label>
         <input type="text" name="surname" size="31"/>
-    </div>
+    </div> 
 
     <div class="field">
         <label for="email">Email address</label>
