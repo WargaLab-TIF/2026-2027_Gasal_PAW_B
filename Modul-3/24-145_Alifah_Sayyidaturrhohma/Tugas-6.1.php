@@ -60,8 +60,6 @@ echo "<br><br>";
 
 $umur = array("Peter"=>35,"Ben"=>37,"Joe"=>43);
 echo 'Array awal: ("Peter"=>35,"Ben"=>37,"Joe"=>43)<br>';
-
-asort($umur);
 echo "Hasil asort: ";
 foreach($umur as $key => $value) {
     echo $key."=>".$value." ";
