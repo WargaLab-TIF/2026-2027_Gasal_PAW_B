@@ -18,8 +18,6 @@
 	}
 	
 	echo ")<br>";
-	echo "Nilai dengan indeks tertinggi: ". $fruit[count($fruit)];	
-
-
+	echo "Nilai dengan indeks tertinggi: ". $fruit[count($fruit)];
 
 ?>
