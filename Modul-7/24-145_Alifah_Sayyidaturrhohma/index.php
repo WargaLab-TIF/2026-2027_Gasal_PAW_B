@@ -21,6 +21,29 @@
         th {
             background-color: #f2f2f2;
         }
+        .card-container {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        .card {
+            border: 1px solid #bce8f1;
+            background-color: #d9edf7;
+            border-radius: 4px;
+            padding: 15px 20px;
+            min-width: 220px;
+        }
+        .card h3 {
+            margin: 0 0 8px 0;
+            font-size: 14px;
+            color: #31708f;
+        }
+        .card p {
+            margin: 0;
+            font-size: 18px;
+            font-weight: bold;
+            color: #333;
+        }
         @media print {
             .no-print {
                 display: none !important;
@@ -125,10 +148,16 @@
             <?php endforeach; ?>
         </table>
 
-        <p>
-            <b>Jumlah Pelanggan:</b> <?= $total_pelanggan; ?> Orang | 
-            <b>Jumlah Pendapatan:</b> Rp. <?= number_format($total_pendapatan, 0, ',', '.'); ?>
-        </p>
+        <div class="card-container">
+            <div class="card">
+                <h3>Jumlah Pelanggan</h3>
+                <p><?= $total_pelanggan; ?> Orang</p>
+            </div>
+            <div class="card">
+                <h3>Jumlah Pendapatan</h3>
+                <p>Rp. <?= number_format($total_pendapatan, 0, ',', '.'); ?></p>
+            </div>
+        </div>
     <?php endif; ?>
 
 </body>
