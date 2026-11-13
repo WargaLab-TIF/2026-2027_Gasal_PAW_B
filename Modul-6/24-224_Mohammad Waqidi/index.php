@@ -1,6 +1,6 @@
 <?php 
 $judul = "Beranda"; 
-include "header.php"; 
+include "header1.php"; 
 ?>
 
 <h2>Dashboard Aplikasi Penjualan</h2>

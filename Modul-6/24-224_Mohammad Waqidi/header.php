@@ -9,7 +9,7 @@ if (!isset($judul)) {
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title><?= htmlspecialchars($judul) ?></title>
-    <link rel="stylesheet" href="/penjualan/assets/style.css">
+    <link rel="stylesheet" href="../../24-224_Mohammad Waqidi/assets/style.css">
 </head>
 <body>
 
