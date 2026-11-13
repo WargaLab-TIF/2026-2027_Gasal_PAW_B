@@ -1,5 +1,5 @@
-CREATE DATABASE IF NOT  EXITS db_modul07;
-  USE db_modul07;
+CREATE DATABASE IF NOT EXISTS db_modul07;
+USE db_modul07;
 
 CREATE TABLE `barang` (
   `id` int NOT NULL,
