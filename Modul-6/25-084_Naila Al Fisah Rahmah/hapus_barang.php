@@ -3,7 +3,6 @@ include 'koneksi.php';
 
 $id = $_GET['id'];
 
-// Cek apakah barang sudah digunakan dalam transaksi
 $cek = mysqli_query($koneksi, "
     SELECT * FROM transaksi_detail
     WHERE barang_id = '$id'
