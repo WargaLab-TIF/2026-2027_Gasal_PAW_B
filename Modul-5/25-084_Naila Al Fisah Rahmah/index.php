@@ -1,4 +1,3 @@
-
 <?php
 require 'koneksi.php';
 
@@ -6,7 +5,7 @@ $dbname = "Modul 5";
 
 // Mengecek database
 $cekDatabase = mysqli_query($conn, "SHOW DATABASES LIKE '$dbname'");
-
+ 
 if (mysqli_num_rows($cekDatabase) == 0) {
     $buatDatabase = "CREATE DATABASE `$dbname`";
     mysqli_query($conn, $buatDatabase);
@@ -15,7 +14,7 @@ if (mysqli_num_rows($cekDatabase) == 0) {
 // Memilih database
 mysqli_select_db($conn, $dbname);
 
-// Mengecek tabel
+// Mengecek tabel 
 $cekTabel = mysqli_query($conn, "SHOW TABLES LIKE 'dataMaster'");
 
 if (mysqli_num_rows($cekTabel) == 0) {
