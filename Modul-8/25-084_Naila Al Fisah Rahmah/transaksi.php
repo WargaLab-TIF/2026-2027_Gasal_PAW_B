@@ -1,0 +1,292 @@
+<?php
+session_start();
+
+if (!isset($_SESSION['id_user'])) {
+    header("Location: login.php");
+    exit;
+}
+
+if ($_SESSION['level'] != 1) {
+    header("Location: index.php");
+    exit;
+}
+
+include 'koneksi.php';
+
+// Proses export Excel
+if (isset($_GET['export'])) {
+
+    $mulai = $_GET['mulai'] ?? '';
+    $selesai = $_GET['selesai'] ?? '';
+
+    header("Content-Type: application/vnd.ms-excel");
+    header("Content-Disposition: attachment; filename=laporan_penjualan.xls");
+
+    $q = "SELECT DATE(waktu_transaksi) AS tgl,
+                 SUM(total) AS total_harian
+          FROM transaksi
+          WHERE waktu_transaksi >= '$mulai'
+          AND waktu_transaksi < DATE_ADD('$selesai', INTERVAL 1 DAY)
+          GROUP BY DATE(waktu_transaksi)
+          ORDER BY tgl ASC";
+
+    $res = mysqli_query($koneksi, $q);
+
+    $total_pendapatan = 0;
+    $no = 1;
+?>
+
+    <table border="1">
+        <tr>
+            <th>No</th>
+            <th>Tanggal</th>
+            <th>Total Penjualan</th>
+        </tr>
+
+        <?php while ($row = mysqli_fetch_assoc($res)) { ?>
+
+            <tr>
+                <td><?= $no++; ?></td>
+                <td><?= $row['tgl']; ?></td>
+                <td><?= $row['total_harian']; ?></td>
+            </tr>
+
+            <?php
+            $total_pendapatan += $row['total_harian'];
+        } ?>
+
+        <tr>
+            <th colspan="2">Total Pendapatan</th>
+            <th><?= $total_pendapatan; ?></th>
+        </tr>
+    </table>
+
+    <?php
+    exit;
+}
+
+// Query data transaksi
+$query = mysqli_query($koneksi, "
+    SELECT transaksi.*, pelanggan.nama
+    FROM transaksi
+    LEFT JOIN pelanggan
+    ON transaksi.pelanggan_id = pelanggan.id
+");
+?>
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Data Transaksi</title>
+
+    <style>
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            background: #f5f4fa;
+            padding: 30px;
+            color: #252b40;
+        }
+
+        h1 {
+            color: #493b78;
+            text-align: center;
+        }
+
+        h2 {
+            color: #493b78;
+            margin-top: 30px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.06);
+        }
+
+        th {
+            background: #493b78;
+            color: white;
+            padding: 16px;
+        }
+
+        td {
+            padding: 14px;
+            text-align: center;
+            border-bottom: 1px solid #eeeaf5;
+        }
+
+        tr:hover {
+            background: #f0edfa;
+        }
+
+        a {
+            display: inline-block;
+            color: white;
+            background: #8064c8;
+            padding: 9px 15px;
+            border-radius: 7px;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        a:hover {
+            background: #6248a5;
+        }
+
+        nav {
+            background: #493b78;
+            padding: 12px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        nav a {
+            background: #8064c8;
+        }
+
+        nav a:hover {
+            background: #6248a5;
+        }
+
+        .dropdown {
+            position: relative;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background: white;
+            min-width: 160px;
+            top: 100%;
+            left: 0;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+            border-radius: 8px;
+            z-index: 10;
+        }
+
+        .dropdown-content a {
+            display: block;
+            color: #493b78;
+            background: white;
+            border-radius: 0;
+        }
+
+        .dropdown-content a:hover {
+            background: #f0edfa;
+        }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+
+        .logout {
+            margin-left: auto;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: white;
+        }
+
+        .no-print button {
+            background: #8064c8;
+            color: white;
+            border: none;
+            padding: 9px 15px;
+            border-radius: 7px;
+            cursor: pointer;
+        }
+
+        .no-print button:hover {
+            background: #6248a5;
+        }
+
+        .no-print input[type="date"] {
+            padding: 8px;
+            border: 1px solid #8064c8;
+            border-radius: 7px;
+            color: #493b78;
+            accent-color: #8064c8;
+        }
+
+        @media print {
+            .no-print {
+                display: none !important;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>APLIKASI PENJUALAN</h1>
+    <h2>Data Transaksi</h2>
+
+    <nav>
+        <a href="index.php">Home</a>
+
+        <?php if ($_SESSION['level'] == 1) { ?>
+            <div class="dropdown">
+                <a href="#">Data Master</a>
+
+                <div class="dropdown-content">
+                    <a href="barang.php">Data Barang</a>
+                    <a href="supplier.php">Data Supplier</a>
+                    <a href="pelanggan.php">Data Pelanggan</a>
+                    <a href="user.php">Data User</a>
+                </div>
+            </div>
+        <?php } ?>
+
+        <a href="transaksi.php">Transaksi</a>
+        <a href="laporan.php">Laporan</a>
+
+        <div class="logout">
+            <span>Halo, <?= $_SESSION['nama']; ?></span>
+            <a href="logout.php">Logout</a>
+        </div>
+    </nav>
+
+    <br>
+
+    <table border="1" cellpadding="10">
+        <tr>
+            <th>No</th>
+            <th>Tanggal</th>
+            <th>Pelanggan</th>
+            <th>Keterangan</th>
+            <th>Total</th>
+            <th>Aksi</th>
+        </tr>
+
+        <?php
+        $no = 1;
+
+        while ($data = mysqli_fetch_assoc($query)) {
+        ?>
+
+            <tr>
+                <td><?= $no++; ?></td>
+                <td><?= $data['waktu_transaksi']; ?></td>
+                <td><?= $data['nama']; ?></td>
+                <td><?= $data['keterangan']; ?></td>
+                <td>Rp <?= number_format($data['total']); ?></td>
+
+                <td>
+                    <a href="detail.php?id=<?= $data['id']; ?>">
+                        Detail
+                    </a>
+                </td>
+            </tr>
+
+        <?php } ?>
+
+    </table>
+
+</body>
+</html>
