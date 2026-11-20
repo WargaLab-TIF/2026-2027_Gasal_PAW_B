@@ -1,0 +1,22 @@
+body { font-family: Arial, sans-serif; background: #f4f4f4; color: #222; max-width: 1000px; margin: 20px auto; padding: 0 15px; }
+h1 { color: #17365d; margin-bottom: 12px; }
+h2 { color: #17365d; }
+h3 { margin-top: 25px; color: #333; }
+.nav { display: flex; align-items: center; gap: 4px; flex-wrap: wrap; background: #17365d; padding: 8px; }
+.nav a { color: white; text-decoration: none; padding: 9px 12px; display: block; }
+.nav a:hover, .nav a.aktif { background: #315b8a; }
+.nama-user { color: white; margin-left: auto; padding: 8px; }
+.dropdown { position: relative; }
+.isi-dropdown { display: none; position: absolute; top: 36px; left: 0; min-width: 160px; background: #17365d; z-index: 2; }
+.dropdown:hover .isi-dropdown { display: block; }
+.isi-dropdown a { padding: 9px; }
+table[border] { width: 100%; border-collapse: collapse; background: white; margin: 10px 0 20px; }
+table[border] th, table[border] td { border: 1px solid #bbb; padding: 8px; text-align: left; }
+table[border] th { background: #ddd; }
+form table { background: white; padding: 8px; }
+form td { padding: 6px; }
+input, select, textarea { padding: 7px; border: 1px solid #aaa; min-width: 190px; }
+input[type=submit] { background: #17365d; color: white; border: 0; cursor: pointer; min-width: 100px; }
+a { color: #0645ad; }
+.nav a { color: white; }
+.pesan { background: #fff3cd; border: 1px solid #e2c76b; padding: 9px; }
