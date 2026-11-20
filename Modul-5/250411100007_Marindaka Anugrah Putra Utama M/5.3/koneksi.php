@@ -4,7 +4,6 @@ if (!$conn) {
   die("Connection failed: " . mysqli_connect_error());
 }
 
-// Setup otomatis: buat database & tabel kalau belum ada
 mysqli_query($conn, "CREATE DATABASE IF NOT EXISTS modul5");
 mysqli_select_db($conn, "modul5");
 
