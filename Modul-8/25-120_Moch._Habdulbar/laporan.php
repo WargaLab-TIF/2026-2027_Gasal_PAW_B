@@ -1,34 +1,96 @@
 <?php
-require 'config.php';
+require_once 'config.php';
 wajib_login();
-$dari   = $_GET['dari'] ?? '';
-$sampai = $_GET['sampai'] ?? '';
 
-$sql = "SELECT t.*, p.nama AS pelanggan FROM transaksi t JOIN pelanggan p ON p.id=t.pelanggan_id WHERE 1=1";
-$tipe = ''; $par = [];
-if ($dari !== '')   { $sql .= " AND t.waktu_transaksi >= ?"; $tipe .= 's'; $par[] = $dari; }
-if ($sampai !== '') { $sql .= " AND t.waktu_transaksi <= ?"; $tipe .= 's'; $par[] = $sampai; }
-$sql .= " ORDER BY t.waktu_transaksi, t.id";
-$s = mysqli_prepare($conn, $sql);
-if ($par) mysqli_stmt_bind_param($s, $tipe, ...$par);
-mysqli_stmt_execute($s);
-$hasil = mysqli_stmt_get_result($s);
+$export = defined('EXPORT');   // true jika dipanggil dari export_excel.php
 
-include 'header.php';
+$mulai   = $_GET['mulai'] ?? '';
+$selesai = $_GET['selesai'] ?? '';
+
+$labels = []; $data_total = []; $rekap = [];
+$total_pendapatan = 0; $total_pelanggan = 0;
+
+if ($mulai !== '' && $selesai !== '') {
+    // Query agregasi total pendapatan harian
+    $s = mysqli_prepare($conn, "SELECT DATE(waktu_transaksi) AS tgl, SUM(total) AS total_harian
+        FROM transaksi WHERE waktu_transaksi BETWEEN ? AND ?
+        GROUP BY DATE(waktu_transaksi) ORDER BY tgl ASC");
+    mysqli_stmt_bind_param($s, 'ss', $mulai, $selesai);
+    mysqli_stmt_execute($s);
+    $res = mysqli_stmt_get_result($s);
+    while ($r = mysqli_fetch_assoc($res)) {
+        $labels[] = $r['tgl'];
+        $data_total[] = (int)$r['total_harian'];
+        $rekap[] = $r;
+        $total_pendapatan += $r['total_harian'];
+    }
+
+    // Query jumlah pelanggan unik
+    $s = mysqli_prepare($conn, "SELECT COUNT(DISTINCT pelanggan_id) AS jml FROM transaksi
+        WHERE waktu_transaksi BETWEEN ? AND ?");
+    mysqli_stmt_bind_param($s, 'ss', $mulai, $selesai);
+    mysqli_stmt_execute($s);
+    $rp = mysqli_fetch_assoc(mysqli_stmt_get_result($s));
+    $total_pelanggan = $rp['jml'] ?? 0;
+}
+
+if (!$export) include 'header.php';
 ?>
-<h3>Laporan Penjualan</h3>
-<form method="get" class="form-inline" style="margin-bottom:15px">
-  <div class="form-group"><label>Dari</label> <input type="date" name="dari" class="form-control" value="<?= h($dari) ?>"></div>
-  <div class="form-group"><label>Sampai</label> <input type="date" name="sampai" class="form-control" value="<?= h($sampai) ?>"></div>
-  <button class="btn btn-primary">Tampilkan</button>
-  <a href="laporan.php" class="btn btn-default">Reset</a>
+<style>
+@media print { .no-print, .navbar { display: none !important; } }
+</style>
+
+<?php if (!$export) { ?>
+<div class="no-print">
+<h3>Filter Laporan Penjualan</h3>
+<form method="GET" class="form-inline" style="margin-bottom:10px">
+  <div class="form-group">Dari: <input type="date" name="mulai" class="form-control" value="<?= h($mulai) ?>" required></div>
+  <div class="form-group">Sampai: <input type="date" name="selesai" class="form-control" value="<?= h($selesai) ?>" required></div>
+  <button type="submit" class="btn btn-primary">Tampilkan</button>
+  <button type="button" class="btn btn-default" onclick="window.print()">Cetak</button>
+  <a class="btn btn-success" href="export_excel.php?mulai=<?= urlencode($mulai) ?>&selesai=<?= urlencode($selesai) ?>">Excel</a>
 </form>
-<table class="table table-bordered table-striped">
-  <tr><th>No</th><th>Tanggal</th><th>Pelanggan</th><th>Keterangan</th><th>Total</th></tr>
-  <?php $grand = 0; $n = 0;
-  while ($r = mysqli_fetch_assoc($hasil)) { $grand += $r['total']; $n++; ?>
-  <tr><td><?= $r['id'] ?></td><td><?= h($r['waktu_transaksi']) ?></td><td><?= h($r['pelanggan']) ?></td><td><?= h($r['keterangan']) ?></td><td><?= rp($r['total']) ?></td></tr>
-  <?php } if (!$n) { ?><tr><td colspan="5" class="text-center">Tidak ada data.</td></tr><?php } ?>
-  <tr><th colspan="4" class="text-right">Total Penjualan</th><th><?= rp($grand) ?></th></tr>
+</div>
+<?php } ?>
+
+<?php if (!empty($labels)): ?>
+<?php if (!$export) { ?>
+<h3>Grafik Penjualan</h3>
+<div style="width: 600px; max-width:100%; height: 300px;"><canvas id="myChart"></canvas></div>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+const ctx = document.getElementById('myChart').getContext('2d');
+new Chart(ctx, {
+  type: 'bar',
+  data: {
+    labels: <?= json_encode($labels); ?>,
+    datasets: [{ label: 'Total Penjualan', data: <?= json_encode($data_total); ?> }]
+  }
+});
+</script>
+<?php } ?>
+
+<h3>Rekapitulasi</h3>
+<table class="table table-bordered" border="1">
+  <tr><th>No</th><th>Total</th><th>Tanggal</th></tr>
+  <?php $no = 1; foreach ($rekap as $row): ?>
+  <tr>
+    <td><?= $no++; ?></td>
+    <td>Rp. <?= number_format($row['total_harian'], 0, ',', '.'); ?></td>
+    <td><?= h($row['tgl']); ?></td>
+  </tr>
+  <?php endforeach; ?>
 </table>
-<?php include 'footer.php'; ?>
+
+<table class="table table-bordered" border="1" style="width:auto">
+  <tr><th>Jumlah Pelanggan</th><th>Jumlah Pendapatan</th></tr>
+  <tr>
+    <td><?= $total_pelanggan; ?> Orang</td>
+    <td>Rp. <?= number_format($total_pendapatan, 0, ',', '.'); ?></td>
+  </tr>
+</table>
+<?php elseif ($mulai !== '' && $selesai !== ''): ?>
+<div class="alert alert-info">Tidak ada transaksi pada rentang tanggal tersebut.</div>
+<?php endif; ?>
+
+<?php if (!$export) include 'footer.php'; ?>
