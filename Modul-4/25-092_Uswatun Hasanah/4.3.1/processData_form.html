@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8"/>
+  <title>Register</title>
+  <style>
+    body { font-family: Verdana, sans-serif; font-size: 12px; }
+    fieldset { background: #dde; width: 420px; }
+    .field { margin: 3px 0; }
+    .field label { display: inline-block; width: 110px; text-align: right; margin-right: 6px; vertical-align: top; }
+  </style>
+</head>
+<body>
+  <h1>Register</h1>
+  <form name="myForm" action="processData.php" method="POST">
+    <fieldset>
+      <legend>Person Details</legend>
+        <div class="field">
+          <label for="surname">Surname</label>
+          <input type="text" name="surname" id="surname" size="31"/>
+        </div>
+        <div class="field">
+          <label for="email">Email address</label>
+          <input type="text" name="email" id="email" size="31"/>
+        </div>
+        <div class="field">
+          <label for="passwd">Password</label>
+          <input type="password" name="passwd" id="passwd" size="31"/>
+        </div>
+        <div class="field">
+          <label for="address">Street Address</label>
+          <textarea name="address" id="address" rows="3" cols="22"></textarea>
+        </div>
+        <div class="field">
+          <label for="state">State</label>
+          <select name="state" id="state">
+            <option value="-1" selected>[choose your state]</option>
+            <option value="1">Australian Capital Territory</option>
+            <option value="2">Queensland</option>
+            <option value="3">Victoria</option>
+            <option value="4">New South Wales</option>
+            <option value="5">Tasmania</option>
+            <option value="6">South Australia</option>
+            <option value="7">Western Australia</option>
+            <option value="8">Northern Territory</option>
+          </select>
+        </div>
+        <div class="field">
+          <input type="hidden" name="country" value="Australia"/>
+        </div>
+        <div class="field">
+          <label for="sex">Gender</label>
+          <input type="radio" name="sex" value="male"/>Male
+          <input type="radio" name="sex" value="female"/>Female
+        </div>
+        <div class="field">
+          <label for="vegetarian">Vegetarian?</label>
+          <input type="checkbox" name="vegetarian" id="vegetarian"/>
+        </div>
+        <div class="field">
+          <label>&nbsp;</label>
+          <input type="submit" value="Submit" name="submit"/><input type="reset" value="Reset" name="reset"/>
+        </div>
+    </fieldset>
+  </form>
+</body>
+</html>
