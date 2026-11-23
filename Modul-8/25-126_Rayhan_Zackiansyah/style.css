@@ -1,0 +1,148 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background: #f4f6fa;
+  color: #273244;
+  margin: 24px auto;
+  padding: 0 18px;
+  max-width: 1100px;
+}
+
+h2 {
+  color: #244775;
+}
+
+a {
+  color: #205eaa;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+nav {
+  background: white;
+  border: 1px solid #dce3eb;
+  border-radius: 7px;
+  padding: 12px;
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+nav .akun {
+  margin-left: auto;
+  color: #555;
+  font-size: 14px;
+}
+
+main {
+  background: white;
+  padding: 18px 22px;
+  border: 1px solid #dce3eb;
+  border-radius: 7px;
+}
+
+input, select, textarea {
+  font: inherit;
+  padding: 7px;
+  border: 1px solid #aeb9c7;
+  border-radius: 4px;
+  max-width: 100%;
+}
+
+button, input[type="submit"] {
+  background: #2965ac;
+  color: white;
+  border: 0;
+  border-radius: 4px;
+  padding: 8px 12px;
+  cursor: pointer;
+}
+
+button:hover, input[type="submit"]:hover {
+  background: #194b85;
+}
+
+form:not(.logout) {
+  margin: 12px 0 22px;
+}
+
+form:not(.logout) button {
+  margin-top: 6px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 12px 0 25px;
+  background: white;
+}
+
+th, td {
+  border: 1px solid #d3dce6;
+  padding: 9px;
+  text-align: left;
+}
+
+th {
+  background: #e6effb;
+}
+
+.pesan {
+  color: #b32222;
+}
+
+.pencarian {
+  background: white;
+  padding: 14px;
+  border: 1px solid #dce3eb;
+  border-radius: 6px;
+}
+
+.halaman-login {
+  max-width: 480px;
+  margin-top: 75px;
+}
+
+.login-box {
+  background: white;
+  padding: 26px;
+  border: 1px solid #dce3eb;
+  border-radius: 8px;
+}
+
+.login-box label {
+  display: block;
+  margin: 12px 0 5px;
+}
+
+.login-box input {
+  width: 100%;
+}
+
+.login-box button {
+  width: 100%;
+  margin-top: 18px;
+}
+
+@media print {
+  body {
+    margin: 0;
+    background: white;
+  }
+
+  .no-print, nav {
+    display: none !important;
+  }
+
+  table {
+    border-color: #888;
+  }
+}
