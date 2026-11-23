@@ -1,0 +1,1 @@
+<?php require_once '../cek_login.php'; wajib_level([1]); $id=(int)$_GET['id'];$cek=mysqli_query($conn,"SELECT id FROM barang WHERE supplier_id=$id");if(mysqli_num_rows($cek)>0){die('Supplier masih digunakan oleh barang. <a href="data.php">Kembali</a>');}mysqli_query($conn,"DELETE FROM supplier WHERE id=$id"); header('Location: data.php'); exit; ?>
