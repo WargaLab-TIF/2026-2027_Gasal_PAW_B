@@ -1,0 +1,82 @@
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: whitesmoke;
+    color: black;
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 20px;
+}
+h1 {
+    color: navy;
+    border-bottom: 3px solid blue;
+    padding-bottom: 8px;
+}
+h2, h3 {
+    color: navy;
+    margin-top: 28px;
+}
+a {
+    color: blue;
+    text-decoration: none;
+}
+a:hover {
+    text-decoration: underline;
+}
+table[border] {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: white;
+    margin-top: 10px;
+}
+table[border] th, table[border] td {
+    border: 1px solid lightgray;
+    padding: 8px 10px;
+    text-align: left;
+}
+table[border] th {
+    background-color: blue;
+    color: white;
+}
+table[border] tr:nth-child(even) td {
+    background-color: ghostwhite;
+}
+table[border] tr:hover td {
+    background-color: lightcyan;
+}
+form table {
+    background-color: white;
+    padding: 12px;
+    border: 1px solid lightgray;
+    border-radius: 6px;
+}
+form td {
+    padding: 6px 10px;
+}
+input[type="text"], input[type="date"], input[type="number"], select, textarea {
+    padding: 6px;
+    border: 1px solid gray;
+    border-radius: 4px;
+    min-width: 220px;
+}
+input[type="submit"] {
+    background-color: blue;
+    color: white;
+    border: none;
+    padding: 8px 18px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+input[type="submit"]:hover {
+    background-color: navy;
+}
+p b {
+    display: block;
+    padding: 10px 14px;
+    background-color: lightyellow;
+    border-left: 5px solid orange;
+    border-radius: 4px;
+    font-weight: normal;
+}
+a[href*="hapus"] {
+    color: red;
+}
